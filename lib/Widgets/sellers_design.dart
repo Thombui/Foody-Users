@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+import 'package:foodpanda_users_app/mainScreens/menus_screen.dart';
+import 'package:foodpanda_users_app/models/sellers.dart';
+
+class SellersDesgnWidget extends StatefulWidget {
+
+  Sellers? model;
+  BuildContext? context;
+
+  SellersDesgnWidget({this.model, this.context});
+
+
+  @override
+  State<SellersDesgnWidget> createState() => _SellersDesgnWidgetState();
+}
+
+class _SellersDesgnWidgetState extends State<SellersDesgnWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: ()
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> MenusScreen(model:widget.model)));
+      },
+      splashColor: Colors.amber,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          height: 285,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Divider(
+                height: 4,
+                thickness: 3,
+                color: Colors.grey[300],
+              ),
+              Image.network(
+                widget.model!.sellerAvatarUrl!,
+                height: 220.0,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 1.0,),
+              Text(
+                widget.model!.sellerName!,
+                style: const TextStyle(
+                  color: Colors.cyan,
+                  fontSize: 20,
+                  fontFamily: "TrainOne",
+                ),
+              ),
+              Text(
+                widget.model!.sellerEmail!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+              Divider(
+                height: 4,
+                thickness: 3,
+                color: Colors.grey[300],
+              ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
